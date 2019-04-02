@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.stereotype.Service;
 
 import com.aaronazon.springmvc.model.Item;
+import com.aaronazon.springmvc.model.ItemType;
 
 @Service("ItemService")
 public class ItemServiceImpl implements ItemService {
@@ -56,9 +57,9 @@ public class ItemServiceImpl implements ItemService {
 	
 	private static List<Item> testData(){
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Item(counter.incrementAndGet(), "BBQ SHIRT", "This is the item I BBQ in","Shirt"));
-		items.add(new Item(counter.incrementAndGet(), "Lego SHIRT", "I play with legos in this shirt", "Socks"));
-		items.add(new Item(counter.incrementAndGet(), "Dancing SHIRT", "This is the shirt I dance in", "Pants"));
+		//items.add(new Item(counter.incrementAndGet(), "BBQ SHIRT", "This is the item I BBQ in", ItemType.SHIRT));
+		//items.add(new Item(counter.incrementAndGet(), "Lego SHIRT", "I play with legos in this shirt", ItemType.SOCKS));
+		//items.add(new Item(counter.incrementAndGet(), "Dancing SHIRT", "This is the shirt I dance in", ItemType.PANTS));
 		return items;
 	}
 

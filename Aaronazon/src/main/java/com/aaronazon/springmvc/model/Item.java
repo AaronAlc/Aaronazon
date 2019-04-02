@@ -7,15 +7,8 @@ public class Item {
 	private ItemType itemType;
 	private long id;
 
-	//list the different types of items the shop sells
-	//Will have to create an object to store this information eventually
-	private enum ItemType{
-		SHIRT, PANTS, SOCKS;
-
-	}
-	
 	/**
-	 * default constructor initializes id to 0
+	 * default constructor 
 	 */
 	public Item() {}
 
@@ -25,26 +18,13 @@ public class Item {
 	 * @param description
 	 * @param itemType
 	 */
-	public Item(long id, String itemName, String description, String itemType) {
+	public Item(long id, String itemName, String description, ItemType itemType) {
 		this.id = id;
 		this.itemName = itemName;
 		this.description = description;
-		if(itemType.equalsIgnoreCase("Shirt")) this.itemType = ItemType.SHIRT;
-		if(itemType.equalsIgnoreCase("Pants")) this.itemType = ItemType.PANTS;
-		if(itemType.equalsIgnoreCase("Socks")) this.itemType = ItemType.SOCKS;
+		this.itemType = itemType;
 	}
 	
-	//sets the item to one of the ItemTypes will have to manually add as we get more items
-	public void setItemType(String itemType) {
-		if(itemType.equalsIgnoreCase("Shirt")) this.itemType = ItemType.SHIRT;
-		if(itemType.equalsIgnoreCase("Pants")) this.itemType = ItemType.PANTS;
-		if(itemType.equalsIgnoreCase("Socks")) this.itemType = ItemType.SOCKS;
-	}
-	
-	public String getItemType() {
-		if(this.itemType == null) return "";
-		return this.itemType.toString();
-	}
 	public String getItemName() {
 		return itemName;
 	}
@@ -68,4 +48,5 @@ public class Item {
 	public String toString() {
 		return "ItemName: " + itemName + " ID: " + id;
 	}
+
 }

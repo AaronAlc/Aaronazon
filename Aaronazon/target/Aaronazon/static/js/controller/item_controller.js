@@ -2,7 +2,15 @@
 
 angular.module('myApp').controller('ItemController', ['$scope', 'ItemService', function($scope, ItemService){
 	var self = this;
-	self.item = {id:null, itemName:'', description:'', itemType:''};
+	self.item = 
+	{
+		id:null, 
+		itemName:'', 
+		description:'', 
+		itemType: {
+			itemTypeName:''
+		}
+	};
 	self.items =[];
 	
 	self.submit = submit;
@@ -18,7 +26,7 @@ angular.module('myApp').controller('ItemController', ['$scope', 'ItemService', f
 			.then(
 			function(d){
 				self.items = d;
-				//console.log('My items ', self.items)
+				console.log('items', d);
 			},
 			function(errResponse){
 				console.error('Error while fetching Items');
@@ -28,28 +36,32 @@ angular.module('myApp').controller('ItemController', ['$scope', 'ItemService', f
 	
 	//creates a new item
 	function createItem(item){
+		console.log('Creating item', item)
 		ItemService.createItem(item)
 			.then(
-				fetchAllItems,
-				function(errResponse){
-					console.error('Error while Creating Item')
-				}
+			fetchAllItems,
+			function(errResponse){
+				console.error('Error while Creating Item');
+			}
 		);
 	}
 	
 	//updates an item
 	function updateItem(item, id){
-		ItemService.updateItem(item, id).then(
+		ItemService.updateItem(item, id)
+			.then(
 			fetchAllItems,
 			function(errResponse){
-				console.error('Error while updating Items')
+				console.error('Error while updating Items');
 			}
 		);
 	}
 	
 	//deletes an item
 	function deleteItem(item, id){
-		ItemService.deleteItem(item, id).then(
+		console.log('Deleting item', item, ' with id', id);
+		ItemService.deleteItem(item, id)
+			.then(
 			fetchAllItems,
 			function(errResponse){
 				console.error('Error while deleting Item');

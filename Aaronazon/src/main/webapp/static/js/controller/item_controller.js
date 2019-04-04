@@ -2,7 +2,15 @@
 
 angular.module('myApp').controller('ItemController', ['$scope', 'ItemService', function($scope, ItemService){
 	var self = this;
-	self.item = {id:null, itemName:'', description:'', itemType:''};
+	self.item = 
+	{
+		id:null, 
+		itemName:'', 
+		description:'', 
+		itemType: {
+			itemTypeName:'',
+		}
+	};
 	self.items =[];
 	
 	self.submit = submit;
@@ -90,7 +98,7 @@ angular.module('myApp').controller('ItemController', ['$scope', 'ItemService', f
 	}
 
 	function reset(){
-		self.item={id:null, itemName:'', description:'', itemType:''};
+		self.item={id:null, itemName:'', description:'', itemType: {itemTypeName:''}};
 		$scope.myForm.$setPristine(); //makes form blank
 	}
 

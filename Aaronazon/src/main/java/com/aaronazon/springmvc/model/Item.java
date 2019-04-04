@@ -1,11 +1,28 @@
 package com.aaronazon.springmvc.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Item")
 public class Item {
 
-	private String itemName;
-	private String description;
-	private ItemType itemType;
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
+	
+	@Column(name="item_name")
+	private String itemName;
+
+	@Column(name="description")
+	private String description;
+
+	private ItemType itemType;
 
 	/**
 	 * default constructor 
@@ -25,12 +42,22 @@ public class Item {
 		this.itemType = itemType;
 	}
 	
+	public ItemType getItemType() {
+		return this.itemType;
+	}
+	
+	public void setItemType(ItemType itemType) {
+		this.itemType = itemType;
+	}
+
 	public String getItemName() {
 		return itemName;
 	}
+
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -46,7 +73,8 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "ItemName: " + itemName + " ID: " + id;
+		return "ItemName: " + this.itemName + " ID: " + this.id +
+				" Description: " + this.description + " ItemType: " + this.itemType;
 	}
-
+	
 }

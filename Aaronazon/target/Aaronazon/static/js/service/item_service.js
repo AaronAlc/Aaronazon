@@ -17,13 +17,10 @@ angular.module('myApp').factory('ItemService', ['$http', '$q', function($http, $
 		var defer = $q.defer();
 		$http.get(REST_SERVICE_URI)
 			.then(
-				function (response) {
-					defer.resolve(response.data);
-				},
-				function (errResponse){
-					defer.reject(errResponse);
-				}
-			);
+			function(response){
+				defer.resolve(response.data);
+			}
+		);
 		return defer.promise;
 	}
 	
@@ -31,13 +28,10 @@ angular.module('myApp').factory('ItemService', ['$http', '$q', function($http, $
 		var defer = $q.defer();
 		$http.post(REST_SERVICE_URI, item)
 			.then(
-				function (response){
-					defer.resolve(response.data);
-				},
-				function(errResponse){
-					defer.reject(errResponse);
-				}
-			);
+			function(response){
+				defer.resolve(response.data);
+			}
+		);
 		return defer.promise;
 	}
 	
@@ -45,24 +39,19 @@ angular.module('myApp').factory('ItemService', ['$http', '$q', function($http, $
 		var defer = $q.defer();
 		$http.put(REST_SERVICE_URI+id, item)
 			.then(
-				function(response){
-					defer.resolve(response.data);
-				},
-				function(errResponse){
-					defer.reject(errResponse);
-				}
-			);
+			function(response){
+				defer.resolve(response.data);
+			}
+		);
 		return defer.promise;
 	}
 	
 	function deleteItem(id){
 		var defer = $q.defer();
-		$http.delete(REST_SERVICE_URI+id).then(
-			function (response){
+		$http.delete(REST_SERVICE_URI+id)
+			.then(
+			function(response){
 				defer.resolve(response.data);
-			},
-			function(errResponse){
-				defer.reject(errResponse);
 			}
 		);
 		return defer.promise;

@@ -7,9 +7,6 @@ angular.module('myApp').controller('ItemController', ['$scope', 'ItemService', f
 		id:null, 
 		itemName:'', 
 		description:'', 
-		itemType: {
-			itemTypeName:'',
-		}
 	};
 	self.items =[];
 	

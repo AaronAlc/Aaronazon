@@ -1,9 +1,9 @@
-package com.aaronazon.springmvc.service;
+package com.aaronazon.springmvc.dao;
 
 import com.aaronazon.springmvc.model.Login;
 import com.aaronazon.springmvc.model.User;
 
-public interface UserService {
+public interface UserDao {
 	
 	User validateUser(Login login);
 	User registerUser(User user);

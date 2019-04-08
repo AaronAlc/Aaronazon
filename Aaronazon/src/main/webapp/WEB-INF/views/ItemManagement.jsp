@@ -47,16 +47,6 @@
 		<td>
 			<input type="text" ng-model="ctrl.item.description" id="itemDesc" placeholder="Enter your Item Description" />
 		</td></tr>
-		<tr><td>
-			<label class="itemtype-label" for="itemTypeName">Item Type</label>
-		</td>
-		<td>
-			<select ng-model="ctrl.item.itemType.itemTypeName" id="itemTypeName">
-				<option value="Shirt">Shirt</option>
-				<option value="Socks">Socks</option>
-				<option value="Pants">Pants</option>
-			</select>
-		</td></tr>
 		<tr>
 		<td>
 			<input type="submit" ng-click="ctrl.submit()" value="{{!ctrl.item.id ? 'Add' : 'Update'}}" class="btn-submit" ng-disabled="myForm.$invalid">
@@ -76,7 +66,6 @@
 						<th>ID</th>
 						<th>Name</th>
 						<th>Description</th>
-						<th>Item Type</th>
 						<th width="20%"></th>
 					</tr>
 				</thead>
@@ -85,7 +74,6 @@
 						<td><span ng-bind="itm.id"></span></td>
 						<td><span ng-bind="itm.itemName"></span></td>
 						<td><span ng-bind="itm.description"></span></td>
-						<td><span ng-bind="itm.itemType.itemTypeName"></span></td>
 						<td>
 							<button type="button" ng-click="ctrl.edit(itm.id)" class="btn success">Edit</button>
 							<button type="button" ng-click="ctrl.remove(itm.id)" class="btn remove">Remove</button>

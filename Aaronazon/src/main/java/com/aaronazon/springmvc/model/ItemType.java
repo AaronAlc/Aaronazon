@@ -1,7 +1,8 @@
 package com.aaronazon.springmvc.model;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import org.hibernate.annotations.Entity;
 
+@Entity
 public class ItemType {
 	
 	private String itemTypeName;

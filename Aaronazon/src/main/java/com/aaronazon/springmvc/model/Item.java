@@ -8,12 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Item")
+@Table(name="item")
 public class Item {
 
-	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id
 	private long id;
 	
 	@Column(name="item_name")
@@ -22,7 +22,8 @@ public class Item {
 	@Column(name="description")
 	private String description;
 
-	private ItemType itemType;
+	//@Embedded
+	//private ItemType itemType;
 
 	/**
 	 * default constructor 
@@ -35,13 +36,23 @@ public class Item {
 	 * @param description
 	 * @param itemType
 	 */
+	
+	public Item(long id, String itemName, String description) {
+		this.id = id;
+		this.itemName = itemName;
+		this.description = description;
+	}
+
+	/**
 	public Item(long id, String itemName, String description, ItemType itemType) {
 		this.id = id;
 		this.itemName = itemName;
 		this.description = description;
 		this.itemType = itemType;
 	}
+	*/
 	
+	/*
 	public ItemType getItemType() {
 		return this.itemType;
 	}
@@ -49,6 +60,7 @@ public class Item {
 	public void setItemType(ItemType itemType) {
 		this.itemType = itemType;
 	}
+	*/
 
 	public String getItemName() {
 		return itemName;
@@ -74,7 +86,7 @@ public class Item {
 	@Override
 	public String toString() {
 		return "ItemName: " + this.itemName + " ID: " + this.id +
-				" Description: " + this.description + " ItemType: " + this.itemType;
+				" Description: " + this.description;
 	}
 	
 }

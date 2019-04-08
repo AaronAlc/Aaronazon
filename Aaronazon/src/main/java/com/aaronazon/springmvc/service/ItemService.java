@@ -11,7 +11,6 @@ public interface ItemService {
 	 void updateItem(Item item);
 	 void deleteItemById(long id);
 	 List<Item> findAllItems();
-	 void deleteAllItems();
-	 public boolean isItemExist(Item item);
+	 boolean isItemExist(Item item);
 
 }

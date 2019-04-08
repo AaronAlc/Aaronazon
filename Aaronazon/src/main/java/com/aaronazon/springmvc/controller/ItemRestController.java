@@ -59,7 +59,6 @@ public class ItemRestController {
 		}
 		currentItem.setItemName(item.getItemName());
 		currentItem.setDescription(item.getDescription());
-		currentItem.setItemType(item.getItemType());
 		
 		itemService.updateItem(currentItem);
 		

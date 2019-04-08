@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Hibernate;
@@ -69,6 +70,7 @@ public class ItemDaoImpl implements ItemDao {
 			String hql = "delete Item where id = :id";
 			Query query = session.createQuery(hql);
 			query.setParameter("id", id);
+			query.executeUpdate();
 			tx.commit();
 		}catch(HibernateException e) {
 			if (tx != null) tx.rollback();
@@ -95,19 +97,43 @@ public class ItemDaoImpl implements ItemDao {
 
 	@Override
 	public void updateItem(Item item) {
-		Session session = factory.openSession();
-		session.update(item);
-		if(session != null && session.isOpen()) session.close();
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = factory.openSession();
+			tx = session.beginTransaction();
+			session.update(item);
+			tx.commit();
+		}catch(Exception e) {
+			if (tx != null) tx.rollback();
+			e.printStackTrace();
+		}finally {
+			if(session != null && session.isOpen()) session.close();
+		}
 	}
 
 	@Override
 	public Item findByName(String itemName) {
-		Session session = factory.openSession();
+		Session session = null;
+		Transaction tx = null;
 		Item item = null;
 		try {
-			item = session.get(Item.class, itemName);
-			Hibernate.initialize(item);
+			session = factory.openSession();
+			tx = session.beginTransaction();
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Item> criteria = builder.createQuery(Item.class);
+			Root<Item> itemRoot = criteria.from(Item.class);
+			criteria.select(itemRoot).where(builder.equal(itemRoot.get("itemName"), itemName));
+			Query query = session.createQuery(criteria);
+
+			//check for existence
+			int result = query.getFirstResult();
+			if(result == 0) return null;
+
+			item = (Item)query.getSingleResult();
+			tx.commit();
 		}catch(Exception e) {
+			if (tx != null) tx.rollback();
 			e.printStackTrace();
 		}finally {
 			if(session != null && session.isOpen()) session.close();

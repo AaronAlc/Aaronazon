@@ -9,4 +9,3 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ComponentScan(basePackages = "com.aaronazon.springmvc")
 public class WebMvcConfiguration{
 }
-

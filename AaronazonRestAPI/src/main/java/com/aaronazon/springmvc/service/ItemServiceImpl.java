@@ -89,5 +89,4 @@ public class ItemServiceImpl implements ItemService {
 		ItemView iView = new ItemView(item.getId(), item.getItemName(), item.getDescription(), item.getImageLoc());
 		return iView;
 	}
-
 }

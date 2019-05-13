@@ -1,0 +1,15 @@
+<suite name="Suite">
+	<test name="test">
+		<classes>
+			<class name="com.aaronazon.test.backend.ItemServiceTest">></class>
+			<class name="com.aaronazon.test.frontend.ItemManagementFrontEndTest"></class>
+		</classes>
+	</test>
+	<!--
+	<test name="prod">
+		<classes>
+			<class name="com.aaronazon.test.backend.ItemServiceTestjava">
+			</class>
+		</classtest>
+	-->
+</suite>

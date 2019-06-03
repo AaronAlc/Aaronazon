@@ -1,5 +1,7 @@
 package com.aaronazon.springmvc.view;
 
+import com.aaronazon.springmvc.entity.Item;
+
 public class ItemView{
 
 	private long id;
@@ -22,6 +24,13 @@ public class ItemView{
 		this.itemName = itemName;
 		this.description = description;
 		this.imageLoc = imageLoc;
+	}
+	
+	public ItemView(Item item) {
+		this.id = item.getId();
+		this.itemName = item.getItemName();
+		this.description = item.getDescription();
+		this.imageLoc = item.getImageLoc();
 	}
 
 	public String getItemName() {

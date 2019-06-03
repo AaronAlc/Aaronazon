@@ -42,7 +42,7 @@ public class ItemServiceTest {
 	@Test
 	public void findItemById_ReturnsItem() throws Exception {
 		ItemView itemView = itemList.get(0);
-		Item item = convertFromItemTypeToItem(itemView);
+		Item item = new Item(itemView);
 		Mockito.when(itemDAO.findById(itemView.getId())).thenReturn(item);
 		Assert.assertTrue(new ReflectionEquals(itemService.findById(itemView.getId())).matches(itemView));
 	}
@@ -57,7 +57,7 @@ public class ItemServiceTest {
 	@Test
 	public void findItemByName_ReturnsItem() throws Exception {
 		ItemView itemView = itemList.get(1);
-		Item item = convertFromItemTypeToItem(itemView);
+		Item item = new Item(itemView);
 		Mockito.when(itemDAO.findByName(itemView.getItemName())).thenReturn(item);
 		Assert.assertEquals(itemView.getId(), itemService.findByName(itemView.getItemName()).getId());
 	}
@@ -72,7 +72,7 @@ public class ItemServiceTest {
 	@Test
 	public void saveItem_ReturnsItem() throws Exception {
 		ItemView itemView = itemList.get(2);
-		Item item = convertFromItemTypeToItem(itemView);
+		Item item = new Item(itemView);
 		Mockito.when(itemDAO.saveItem(Mockito.any(Item.class))).thenReturn(item);
 		Assert.assertTrue(new ReflectionEquals(itemService.saveItem(itemView)).matches(itemView));
 	}
@@ -87,7 +87,7 @@ public class ItemServiceTest {
 	@Test
 	public void updateItem_ReturnsItem() throws Exception {
 		ItemView itemView = itemList.get(0);
-		Item item = convertFromItemTypeToItem(itemView);
+		Item item = new Item(itemView);
 		Mockito.when(itemDAO.updateItem(item)).thenReturn(item);
 		Assert.assertTrue(new ReflectionEquals(itemService.updateItem(itemView)).matches(itemView));
 	}
@@ -143,15 +143,10 @@ public class ItemServiceTest {
 		Assert.assertEquals(false, itemService.isItemExist(itemView));
 	}
 	
-	private static Item convertFromItemTypeToItem(ItemView itemView) {
-		Item item = new Item(itemView.getId(), itemView.getItemName(), itemView.getDescription(), itemView.getImageLoc());
-		return item;
-	}
-	
 	private static List<Item> convertItemTypeList(List<ItemView> itemViewList) {
 		List<Item> iList = new ArrayList<Item>();
 		for (ItemView iView: itemViewList ) {
-			iList.add(convertFromItemTypeToItem(iView));
+			iList.add(new Item(iView));
 		}
 		return iList;
 	}

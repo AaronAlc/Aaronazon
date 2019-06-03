@@ -2,7 +2,6 @@ package com.aaronazon.springmvc.service;
 
 import java.util.List;
 
-import com.aaronazon.springmvc.entity.Item;
 import com.aaronazon.springmvc.view.ItemView;
 
 public interface ItemService {

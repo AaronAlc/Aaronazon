@@ -32,7 +32,7 @@ public class HibernateConfig {
 		return sessionFactory;
 	}
 	
-	public DataSource dataSource() {
+	private DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(enviroment.getRequiredProperty("jdbc.driverClassName"));
 		dataSource.setUrl(enviroment.getRequiredProperty("jdbc.url"));

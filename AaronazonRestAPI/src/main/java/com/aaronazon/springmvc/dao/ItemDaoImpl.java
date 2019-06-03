@@ -2,13 +2,11 @@ package com.aaronazon.springmvc.dao;
 
 import java.util.List;
 
-import org.apache.log4j.LogManager;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -30,7 +28,9 @@ public class ItemDaoImpl implements ItemDao {
 
 	public List<Item> findAllItems() {
 		Criteria criteria = factory.getCurrentSession().createCriteria(Item.class);
-		return (List<Item>) criteria.list();
+		@SuppressWarnings("unchecked")
+		List<Item> list = criteria.list();
+		return list;
 	}
 
 	/**

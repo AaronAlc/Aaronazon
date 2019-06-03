@@ -41,6 +41,7 @@ public class ItemManagementFrontEndTest {
 		driver.findElement(By.cssSelector("#itemDesc")).sendKeys(TEST_ITEM_DESCRIPTION);
 		driver.findElement(By.cssSelector("#submit_btn")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#table_" + TEST_ITEM_NAME)));
+		Assert.assertEquals(TEST_ITEM_NAME, driver.findElement(By.cssSelector("#table_" + TEST_ITEM_NAME)).getText());
 	}
 
 	@Test(priority = 3)
@@ -48,7 +49,8 @@ public class ItemManagementFrontEndTest {
 		driver.findElement(By.cssSelector("#itemName")).sendKeys(TEST_ITEM_NAME);
 		driver.findElement(By.cssSelector("#itemDesc")).sendKeys("Item Description Goes Here");
 		driver.findElement(By.cssSelector("#submit_btn")).click();
-		wait.until(ExpectedConditions.textToBe(By.cssSelector("#error_message"), "Item already exists"));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#error_message")));
+		Assert.assertEquals("Item already exists", driver.findElement(By.cssSelector("#error_message")).getText());
 	}
 
 	@Test(priority = 4)
@@ -57,7 +59,8 @@ public class ItemManagementFrontEndTest {
 		driver.findElement(By.cssSelector("#itemName")).clear();
 		driver.findElement(By.cssSelector("#itemName")).sendKeys(TEST_ITEM_NAME_CHANGED);
 		driver.findElement(By.cssSelector("#submit_btn")).click();
-		wait.until(ExpectedConditions.textToBe(By.cssSelector("#table_" + TEST_ITEM_NAME_CHANGED), TEST_ITEM_NAME_CHANGED));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#table_" + TEST_ITEM_NAME_CHANGED)));
+		Assert.assertEquals(TEST_ITEM_NAME_CHANGED, driver.findElement(By.cssSelector("#table_" + TEST_ITEM_NAME_CHANGED)).getText());
 	}
 	
 	@Test(priority = 5)

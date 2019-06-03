@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.aaronazon.springmvc.view.ItemView;
+
 @Entity
 @Table(name="item")
 public class Item{
@@ -40,6 +42,13 @@ public class Item{
 		this.itemName = itemName;
 		this.description = description;
 		this.imageLoc = imageLoc;
+	}
+	
+	public Item(ItemView itemView) {
+		this.id = itemView.getId();
+		this.itemName = itemView.getItemName();
+		this.description = itemView.getDescription();
+		this.imageLoc = itemView.getImageLoc();
 	}
 
 	public String getItemName() {
